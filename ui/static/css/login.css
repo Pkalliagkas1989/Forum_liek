@@ -1,0 +1,116 @@
+  /* Place the CSS you shared here for now */
+  :root {
+    --color-primary: #00ff75;
+    --color-secondary: #3700ff;
+    --gradient-main: linear-gradient(163deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+
+    body {
+        background-color: #0f0f0f;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+  
+      /* From Uiverse.io by Phelix652 */ 
+      .form {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 4em;
+          background-color: #171717;
+          border-radius: 20px;
+          font-size: 1.3em;
+      }
+  
+      #heading {
+        text-align: center;
+        margin: 2em;
+        color: rgb(0, 255, 200);
+        font-size: 1.2em;
+      }
+  
+      .field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        border-radius: 25px;
+        padding: 0.6em;
+        border: none;
+        outline: none;
+        color: white;
+        background-color: #171717;
+        box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+      }
+  
+      .input-icon {
+        height: 1.3em;
+        width: 1.3em;
+        fill: rgb(0, 255, 200);
+      }
+  
+      .input-field {
+        background: none;
+        border: none;
+        outline: none;
+        width: 100%;
+        color: rgb(0, 255, 200);
+        font-size: 1em; 
+      }
+  
+      .form .btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          margin-top: 4em;
+      }
+  
+      .button1, .button3 {
+      width: 200px;
+      font-size: 1em;
+      padding: 0.7em;
+      text-align: center;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      transition: .4s ease-in-out;
+      background-image: var(--gradient-main);
+      color: rgb(0, 0, 0);
+      margin-bottom: 1em;
+    }
+  
+      .button1:hover {
+        background-image: var(--gradient-main);
+        color: rgb(0, 255, 200);
+      }
+  
+      .button3:hover {
+        background-image: var(--gradient-main);
+        color: rgb(0, 255, 200);
+      }
+  
+      .card {
+        background-image: var(--gradient-main);
+        border-radius: 22px;
+        transition: all .3s;
+      }
+  
+      .card2 {
+        border-radius: 0;
+        transition: all .2s;
+      }
+  
+      .card2:hover {
+        transform: scale(0.98);
+        border-radius: 20px;
+      }
+  
+      .card:hover {
+        box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+      }
+

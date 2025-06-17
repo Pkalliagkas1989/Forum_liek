@@ -1,0 +1,257 @@
+:root {
+    --color-primary: #00ff75;
+    --color-secondary: #3700ff;
+}
+
+
+*, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #0f0f0f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Space for the navbar */
+    min-height: 100vh;
+  }
+  
+  .navbar {
+    width: 100%;
+    padding: 1em 6%;
+    background-color: #171717;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 5px 15px rgba(0, 255, 117, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 2em;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease-in-out;
+    font-weight: 500;
+  }
+  
+  .navbar-links li a:hover {
+    color: #00ff75;
+    text-shadow: 0 0 5px rgba(0, 255, 117, 0.5);
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    padding: 2em;
+    max-width: 1800px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .card2 {
+    background-color: #171717;
+    padding: 1.5em;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 117, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card2:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px var(--color-primary);
+  }
+  
+  .card-title {
+    color: var(--color-primary);
+    margin-top: 0;
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+  }
+  
+  .card-content {
+    color: #ccc;
+    font-size: 0.95em;
+    line-height: 1.4;
+  }
+  
+ 
+  /* Side menu styles */
+  .side-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background-color: #0f0f0f;
+    transition: all 0.3s ease;
+    z-index: 1;
+    padding-top: 1em;
+    overflow: visible; /* important so the glow can show outside */
+  }
+  
+  /* Glowing gradient bar */
+  .side-glow {
+    position: absolute;
+    top: 0;
+    right: -4px; /* stick it just outside the menu */
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    box-shadow: 12px 0 30px 3px rgba(0, 255, 117, 0.5);
+    opacity: 0.1;
+    transition: opacity 0.3s ease;
+    border-radius: 0 4px 4px 0;
+    pointer-events: none; /* avoid interfering with hover/clicks */
+  }
+  
+  /* Show glow on hover */
+  .side-menu:hover .side-glow {
+    opacity: 1;
+  }    
+  
+  
+  .side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-menu ul li {
+    padding: 1em 2em;
+  }
+  
+  .side-menu ul li a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+  }
+
+  .auth-only {
+    display: none;
+  }  
+  
+  .forum-content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    margin-left: 250px;
+  }
+  
+  .category-section {
+    background-color: #171717;
+    border-radius: 20px;
+    padding: 1.5em 2em;
+    box-shadow: 0 0 15px rgba(0, 255, 117, 0.05);
+  }
+  
+  .category-title {
+    color: var(--color-primary);
+    font-size: 1.8em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgba(0, 255, 117, 0.2);
+    padding-bottom: 0.5em;
+  }
+
+  .category-toggle {
+    color: var(--color-primary);
+  }
+  
+  .post {
+    background-color: #1e1e1e;
+    padding: 1.2em;
+    border-radius: 15px;
+    margin-bottom: 1.5em;
+    box-shadow: 0 0 10px rgba(0, 255, 117, 0.05);
+  }
+  
+  .post h3 {
+    color: var(--color-primary);
+    margin: 0 0 0.5em;
+    font-size: 1.2em;
+  }
+  
+  .post p {
+    color: #ccc;
+    margin: 0.4em 0;
+    line-height: 1.5;
+  }
+  
+  .post time {
+    font-size: 0.85em;
+    color: #888;
+  }
+  
+  .comment {
+    margin-left: 1em;
+    margin-top: 1em;
+    background-color: #222;
+    padding: 0.8em 1em;
+    border-radius: 12px;
+    color: #ccc;
+    box-shadow: inset 0 0 5px rgba(0, 255, 117, 0.05);
+  }
+  
+  .comment strong {
+    color: var(--color-primary);
+  }
+  
+  .comment time {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 0.3em;
+  }
+  
+  .category-tabs {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1em;
+  }
+  
+  .category-tabs li a {
+    display: block;
+    padding: 0.75em 0.5em;
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .category-tabs li a:hover,
+  .category-tabs li a.active {
+    background-color: rgba(0, 255, 117, 0.1);
+    color: var(--color-primary);
+    border-left: 3px solid var(--color-primary);
+  }  

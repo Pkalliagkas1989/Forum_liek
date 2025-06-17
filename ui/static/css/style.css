@@ -1,0 +1,148 @@
+/* Color Variables */
+:root {
+  --color-primary: #00ff75;
+  --color-secondary: #3700ff;
+  --gradient-main: linear-gradient(163deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    background: #000;
+  }
+  
+  .hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    /* background: url('images/sci-fi-bg.jpg') no-repeat center center; */
+    background-size: cover;
+    transform: translateZ(-1px) scale(1.5);
+    z-index: -1;
+    will-change: transform;
+  }
+  
+  .hero-content {
+    position: relative;
+    max-width: 1200px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+  
+  .foreground-img {
+    width: 50%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  
+  .signup-box {
+    max-width: 40%;
+  }
+  
+  .subtext {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+  
+  .signup-box h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .signup-box .desc {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 2rem;
+  }
+  
+  .signup-btn {
+    background-image: var(--color-primary);
+    color: black;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .signup-btn:hover {
+    filter: brightness(1.1);
+  }
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s, filter 0.3s;
+  }
+
+  .primary {
+    background-image: var(--gradient-main);
+    color: black;
+  }
+
+  .primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  
+  .secondary {
+    background-image: var(--gradient-main);
+    color: black;
+    border: none;
+  }
+  
+  .secondary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+
+  .btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  
+  .ghost {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #666;
+  }
+  
+  .ghost:hover {
+    background: #111;
+    color: white;
+  }
