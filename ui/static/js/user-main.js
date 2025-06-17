@@ -7,6 +7,7 @@ import { PostRenderer } from "./user-post-renderer.js";
 import { ForumRenderer } from "./user-forum-renderer.js";
 import { NavigationHandler } from "./user-navigation-handler.js";
 import { setupCreatedPostsHandler } from "./user-created-posts.js";
+import { setupLikedPostsHandler } from "./user-liked-posts.js";
 import { initModal } from "./modal.js";
 
 (async () => {
@@ -43,6 +44,7 @@ import { initModal } from "./modal.js";
       configManager
     );
     setupCreatedPostsHandler(configManager, postRenderer);
+    setupLikedPostsHandler(configManager, postRenderer);
 
     // Setup navigation
     navigationHandler.setupMyFeedLink();
