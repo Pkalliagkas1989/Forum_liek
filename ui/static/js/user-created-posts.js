@@ -21,7 +21,6 @@ function setupCreatedPostsHandler(configManager, postRenderer) {
 
       const container = document.getElementById("forumContainer");
       const postTemplate = document.getElementById("post-template");
-      const commentTemplate = document.getElementById("comment-template");
 
       container.innerHTML = ""; // Clear previous posts
 
@@ -29,11 +28,9 @@ function setupCreatedPostsHandler(configManager, postRenderer) {
         const categoryName = post.category_name || "General";
         postRenderer.renderPost(
           post,
-          commentTemplate,
           postTemplate,
           container,
-          categoryName,
-          () => {} // Optional refresh callback
+          categoryName
         );
       });
     } catch (error) {

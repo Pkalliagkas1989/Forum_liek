@@ -21,7 +21,6 @@ function setupLikedPostsHandler(configManager, postRenderer) {
 
       const container = document.getElementById("forumContainer");
       const postTemplate = document.getElementById("post-template");
-      const commentTemplate = document.getElementById("comment-template");
 
       container.innerHTML = "";
 
@@ -29,11 +28,9 @@ function setupLikedPostsHandler(configManager, postRenderer) {
         const categoryName = post.category_name || "General";
         postRenderer.renderPost(
           post,
-          commentTemplate,
           postTemplate,
           container,
-          categoryName,
-          () => {}
+          categoryName
         );
       });
     } catch (error) {

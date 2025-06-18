@@ -9,7 +9,6 @@ class ForumRenderer {
   renderAllPosts() {
     this.forumContainer.innerHTML = "";
     const postTemplate = document.getElementById("post-template");
-    const commentTemplate = document.getElementById("comment-template");
     const data = this.dataManager.getData();
 
     if (!data || !Array.isArray(data.categories)) {
@@ -39,11 +38,9 @@ class ForumRenderer {
     allPosts.forEach((post) => {
       this.postRenderer.renderPost(
         post,
-        commentTemplate,
         postTemplate,
         this.forumContainer,
-        post.categoryNames.join(", "),
-        () => this.renderAllPosts()
+        post.categoryNames.join(", ")
       );
     });
   }
@@ -58,7 +55,6 @@ class ForumRenderer {
 
     const categoryTemplate = document.getElementById("category-template");
     const postTemplate = document.getElementById("post-template");
-    const commentTemplate = document.getElementById("comment-template");
 
     const categoryElement = categoryTemplate.content.cloneNode(true);
     categoryElement.querySelector(".category-title").textContent =
@@ -68,11 +64,9 @@ class ForumRenderer {
     category.posts.forEach((post) => {
       this.postRenderer.renderPost(
         post,
-        commentTemplate,
         postTemplate,
         postsContainer,
-        category.name,
-        () => this.renderPostsForCategory(categoryId)
+        category.name
       );
     });
 
