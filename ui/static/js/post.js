@@ -1,22 +1,16 @@
 import { ConfigManager } from "./user-config-manager.js";
+import { AuthGuard } from "./user-auth-guard.js";
 import { countReactions } from "./user-utils.js";
 
 (async () => {
   const configManager = new ConfigManager();
   await configManager.loadConfig();
   const API_CONFIG = configManager.getConfig();
+  const authGuard = new AuthGuard();
+  const authenticated = await authGuard.checkAuthentication(API_CONFIG);
+  if (!authenticated) return;
 
-  let isAuthenticated = false;
-  try {
-    const res = await fetch(API_CONFIG.AuthURI, {
-      credentials: "include",
-    });
-    if (res.ok) {
-      isAuthenticated = true;
-    }
-  } catch (err) {
-    isAuthenticated = false;
-  }
+  const isAuthenticated = true;
 
   const urlParams = new URLSearchParams(window.location.search);
   const postId = urlParams.get("id");
