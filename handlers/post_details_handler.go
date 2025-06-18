@@ -23,7 +23,13 @@ func (h *PostDetailsHandler) GetPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	id := strings.TrimPrefix(r.URL.Path, "/forum/api/posts/")
+	path := strings.Trim(r.URL.Path, "/")
+	parts := strings.Split(path, "/")
+	if len(parts) == 0 {
+		utils.ErrorResponse(w, "Post ID required", http.StatusBadRequest)
+		return
+	}
+	id := parts[len(parts)-1]
 	if id == "" {
 		utils.ErrorResponse(w, "Post ID required", http.StatusBadRequest)
 		return

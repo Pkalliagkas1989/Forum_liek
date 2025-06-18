@@ -49,6 +49,7 @@ func main() {
 			"MyPostsURI":    MyPostsURI,
 			"LikedPostsURI": LikedPostsURI,
 			"PostDetailURI": PostDetailURI,
+			"UserPostURI":   UserPostURI,
 		}
 		json.NewEncoder(w).Encode(config)
 	})

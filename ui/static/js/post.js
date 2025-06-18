@@ -20,7 +20,7 @@ import { countReactions } from "./user-utils.js";
   }
 
   async function fetchPost() {
-    const res = await fetch(`${API_CONFIG.APIBaseURL}/posts/${postId}`, {
+    const res = await fetch(`${API_CONFIG.UserPostURI}${postId}`, {
       credentials: "include",
     });
     if (!res.ok) throw new Error("Failed to load post");

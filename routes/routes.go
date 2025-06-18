@@ -54,6 +54,7 @@ func SetupRoutes(db *sql.DB) http.Handler {
 	}
 
 	mux.Handle("/forum/api/posts/create", protected(http.HandlerFunc(postHandler.CreatePost)))
+	mux.Handle("/forum/api/user/post/", protected(http.HandlerFunc(postDetailsHandler.GetPost)))
 	mux.Handle("/forum/api/user/posts", protected(http.HandlerFunc(myPostsHandler.GetMyPosts)))
 	mux.Handle("/forum/api/user/liked", protected(http.HandlerFunc(likedPostsHandler.GetLikedPosts)))
 	mux.Handle("/forum/api/comments", protected(http.HandlerFunc(commentHandler.CreateComment)))
