@@ -217,6 +217,7 @@
     color: var(--color-primary);
     font-size: 2em;
     font-weight: bolder;
+    cursor: pointer;
   }
   
   .comment {
