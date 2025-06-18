@@ -201,6 +201,13 @@
     margin: 0 0 0.5em;
     font-size: 1.2em;
   }
+
+  .post-title {
+    color: var(--color-primary);
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+  }
   
   .post p {
     color: #ccc;
