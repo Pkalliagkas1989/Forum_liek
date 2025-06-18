@@ -30,6 +30,9 @@ func main() {
 	http.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./static/templates/post.html")
 	})
+	http.HandleFunc("/guest-post", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/templates/post_guest.html")
+	})
 	http.HandleFunc("/config", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		config := map[string]string{
