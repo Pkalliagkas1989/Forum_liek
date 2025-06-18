@@ -1,14 +1,22 @@
 import { ConfigManager } from "./user-config-manager.js";
-import { AuthGuard } from "./user-auth-guard.js";
 import { countReactions } from "./user-utils.js";
 
 (async () => {
   const configManager = new ConfigManager();
   await configManager.loadConfig();
   const API_CONFIG = configManager.getConfig();
-  const authGuard = new AuthGuard();
-  const authenticated = await authGuard.checkAuthentication(API_CONFIG);
-  if (!authenticated) return;
+
+  let isAuthenticated = false;
+  try {
+    const res = await fetch(API_CONFIG.AuthURI, {
+      credentials: "include",
+    });
+    if (res.ok) {
+      isAuthenticated = true;
+    }
+  } catch (err) {
+    isAuthenticated = false;
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const postId = urlParams.get("id");
@@ -48,6 +56,11 @@ import { countReactions } from "./user-utils.js";
 
   function addCommentInput(postContainer) {
     const commentBtn = postContainer.querySelector(".comment-btn");
+    if (!isAuthenticated) {
+      if (commentBtn) commentBtn.style.display = "none";
+      return;
+    }
+
     commentBtn.addEventListener("click", () => {
       let box = postContainer.querySelector(".comment-input");
       if (!box) {
@@ -104,8 +117,17 @@ import { countReactions } from "./user-utils.js";
     const { likes, dislikes } = countReactions(data.reactions || []);
     likeBtn.querySelector(".like-count").textContent = likes;
     dislikeBtn.querySelector(".dislike-count").textContent = dislikes;
-    likeBtn.addEventListener("click", () => handleReaction(data.id, "post", 1, likeBtn, dislikeBtn));
-    dislikeBtn.addEventListener("click", () => handleReaction(data.id, "post", 2, likeBtn, dislikeBtn));
+    if (isAuthenticated) {
+      likeBtn.addEventListener("click", () =>
+        handleReaction(data.id, "post", 1, likeBtn, dislikeBtn)
+      );
+      dislikeBtn.addEventListener("click", () =>
+        handleReaction(data.id, "post", 2, likeBtn, dislikeBtn)
+      );
+    } else {
+      likeBtn.disabled = true;
+      dislikeBtn.disabled = true;
+    }
 
     const commentsContainer = postElement.querySelector(".post-comments");
     commentsContainer.innerHTML = "";
@@ -120,8 +142,17 @@ import { countReactions } from "./user-utils.js";
       const counts = countReactions(comment.reactions || []);
       cLike.querySelector(".like-count").textContent = counts.likes;
       cDis.querySelector(".dislike-count").textContent = counts.dislikes;
-      cLike.addEventListener("click", () => handleReaction(comment.id, "comment", 1, cLike, cDis));
-      cDis.addEventListener("click", () => handleReaction(comment.id, "comment", 2, cLike, cDis));
+      if (isAuthenticated) {
+        cLike.addEventListener("click", () =>
+          handleReaction(comment.id, "comment", 1, cLike, cDis)
+        );
+        cDis.addEventListener("click", () =>
+          handleReaction(comment.id, "comment", 2, cLike, cDis)
+        );
+      } else {
+        cLike.disabled = true;
+        cDis.disabled = true;
+      }
       commentsContainer.appendChild(commentElement);
     });
 
