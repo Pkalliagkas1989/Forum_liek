@@ -2,12 +2,11 @@ import { countReactions } from './user-utils.js';
 
 // Post rendering functionality
 class PostRenderer {
-  constructor(reactionHandler, commentHandler) {
+  constructor(reactionHandler) {
     this.reactionHandler = reactionHandler;
-    this.commentHandler = commentHandler;
   }
 
-  renderPost(post, commentTemplate, postTemplate, container, categoryName, refreshFn) {
+  renderPost(post, postTemplate, container, categoryName) {
     const postElement = postTemplate.content.cloneNode(true);
     postElement.querySelector(
       ".post-header"
@@ -35,48 +34,7 @@ class PostRenderer {
       this.reactionHandler.handleReaction(post.id, "post", 2, newLikeBtn, newDislikeBtn)
     );
 
-    const commentsContainer = postElement.querySelector(".post-comments");
-    commentsContainer.innerHTML = "";
-    (post.comments || []).forEach((comment) => {
-      const commentElement = commentTemplate.content.cloneNode(true);
-      const commentNode = commentElement.querySelector(".comment");
-      commentNode.querySelector(".comment-user").textContent = comment.username;
-      commentNode.querySelector(".comment-content").textContent =
-        comment.content;
-      commentNode.querySelector(".comment-time").textContent = new Date(
-        comment.created_at
-      ).toLocaleString();
-      const commentLikeBtn = commentNode.querySelector(".like-btn");
-      const commentDislikeBtn = commentNode.querySelector(".dislike-btn");
-      const { likes, dislikes } = countReactions(comment.reactions || []);
-      commentLikeBtn.querySelector(".like-count").textContent = likes;
-      commentDislikeBtn.querySelector(".dislike-count").textContent = dislikes;
-      commentLikeBtn.replaceWith(commentLikeBtn.cloneNode(true));
-      commentDislikeBtn.replaceWith(commentDislikeBtn.cloneNode(true));
-      const newCommentLikeBtn = commentNode.querySelector(".like-btn");
-      const newCommentDislikeBtn = commentNode.querySelector(".dislike-btn");
-      newCommentLikeBtn.addEventListener("click", () =>
-        this.reactionHandler.handleReaction(
-          comment.id,
-          "comment",
-          1,
-          newCommentLikeBtn,
-          newCommentDislikeBtn
-        )
-      );
-      newCommentDislikeBtn.addEventListener("click", () =>
-        this.reactionHandler.handleReaction(
-          comment.id,
-          "comment",
-          2,
-          newCommentLikeBtn,
-          newCommentDislikeBtn
-        )
-      );
-      commentsContainer.appendChild(commentElement);
-    });
 
-    this.commentHandler.addCommentInput(postContainer, post, refreshFn);
 
     postContainer.addEventListener("click", (e) => {
       if (e.target.closest("button")) return;

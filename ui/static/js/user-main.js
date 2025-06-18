@@ -2,7 +2,6 @@ import { AuthGuard } from "./user-auth-guard.js";
 import { ConfigManager } from "./user-config-manager.js";
 import { DataManager } from "./user-data-manager.js";
 import { ReactionHandler } from "./user-reaction-handler.js";
-import { CommentHandler } from "./user-comment-handler.js";
 import { PostRenderer } from "./user-post-renderer.js";
 import { ForumRenderer } from "./user-forum-renderer.js";
 import { NavigationHandler } from "./user-navigation-handler.js";
@@ -36,8 +35,7 @@ import { initModal } from "./modal.js";
     // Initialize all components
     const dataManager = new DataManager();
     const reactionHandler = new ReactionHandler(configManager, dataManager);
-    const commentHandler = new CommentHandler(configManager, dataManager);
-    const postRenderer = new PostRenderer(reactionHandler, commentHandler);
+    const postRenderer = new PostRenderer(reactionHandler);
     const forumRenderer = new ForumRenderer(postRenderer, dataManager);
     const navigationHandler = new NavigationHandler(
       forumRenderer,

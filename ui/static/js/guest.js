@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderAllPosts() {
     forumContainer.innerHTML = "";
     const postTemplate = document.getElementById("post-template");
-    const commentTemplate = document.getElementById("comment-template");
 
     if (!data || !data.categories) return;
 
@@ -111,58 +110,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      const commentsContainer = postElement.querySelector(".post-comments");
-      commentsContainer.innerHTML = "";
-
-      post.comments.forEach((comment) => {
-        const commentElement = commentTemplate.content.cloneNode(true);
-        const commentNode = commentElement.querySelector(".comment");
-
-        commentNode.querySelector(".comment-user").textContent =
-          comment.username;
-        commentNode.querySelector(".comment-content").textContent =
-          comment.content;
-        commentNode.querySelector(".comment-time").textContent = new Date(
-          comment.created_at
-        ).toLocaleString();
-
-        const commentLikeBtn = commentNode.querySelector(".like-btn");
-        const commentDislikeBtn = commentNode.querySelector(".dislike-btn");
-        const { likes, dislikes } = countReactions(comment.reactions || []);
-
-        commentLikeBtn.querySelector(".like-count").textContent = likes;
-        commentDislikeBtn.querySelector(".dislike-count").textContent =
-          dislikes;
-        commentLikeBtn.disabled = commentDislikeBtn.disabled = !isAuthenticated;
-
-        commentLikeBtn.replaceWith(commentLikeBtn.cloneNode(true));
-        commentDislikeBtn.replaceWith(commentDislikeBtn.cloneNode(true));
-        const newCommentLikeBtn = commentNode.querySelector(".like-btn");
-        const newCommentDislikeBtn = commentNode.querySelector(".dislike-btn");
-
-        if (isAuthenticated) {
-          newCommentLikeBtn.addEventListener("click", () =>
-            handleReaction(
-              comment.id,
-              "comment",
-              1,
-              newCommentLikeBtn,
-              newCommentDislikeBtn
-            )
-          );
-          newCommentDislikeBtn.addEventListener("click", () =>
-            handleReaction(
-              comment.id,
-              "comment",
-              2,
-              newCommentLikeBtn,
-              newCommentDislikeBtn
-            )
-          );
-        }
-
-      commentsContainer.appendChild(commentElement);
-      });
 
       postContainer.addEventListener("click", (e) => {
         if (e.target.closest("button")) return;
@@ -182,7 +129,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const categoryTemplate = document.getElementById("category-template");
     const postTemplate = document.getElementById("post-template");
-    const commentTemplate = document.getElementById("comment-template");
 
     const categoryElement = categoryTemplate.content.cloneNode(true);
     categoryElement.querySelector(".category-title").textContent =
@@ -223,58 +169,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }
 
-      const commentsContainer = postElement.querySelector(".post-comments");
-      commentsContainer.innerHTML = "";
-
-      post.comments.forEach((comment) => {
-        const commentElement = commentTemplate.content.cloneNode(true);
-        const commentNode = commentElement.querySelector(".comment");
-
-        commentNode.querySelector(".comment-user").textContent =
-          comment.username;
-        commentNode.querySelector(".comment-content").textContent =
-          comment.content;
-        commentNode.querySelector(".comment-time").textContent = new Date(
-          comment.created_at
-        ).toLocaleString();
-
-        const commentLikeBtn = commentNode.querySelector(".like-btn");
-        const commentDislikeBtn = commentNode.querySelector(".dislike-btn");
-        const { likes, dislikes } = countReactions(comment.reactions || []);
-
-        commentLikeBtn.querySelector(".like-count").textContent = likes;
-        commentDislikeBtn.querySelector(".dislike-count").textContent =
-          dislikes;
-        commentLikeBtn.disabled = commentDislikeBtn.disabled = !isAuthenticated;
-
-        commentLikeBtn.replaceWith(commentLikeBtn.cloneNode(true));
-        commentDislikeBtn.replaceWith(commentDislikeBtn.cloneNode(true));
-        const newCommentLikeBtn = commentNode.querySelector(".like-btn");
-        const newCommentDislikeBtn = commentNode.querySelector(".dislike-btn");
-
-        if (isAuthenticated) {
-          newCommentLikeBtn.addEventListener("click", () =>
-            handleReaction(
-              comment.id,
-              "comment",
-              1,
-              newCommentLikeBtn,
-              newCommentDislikeBtn
-            )
-          );
-          newCommentDislikeBtn.addEventListener("click", () =>
-            handleReaction(
-              comment.id,
-              "comment",
-              2,
-              newCommentLikeBtn,
-              newCommentDislikeBtn
-            )
-          );
-        }
-
-      commentsContainer.appendChild(commentElement);
-      });
 
       postContainer.addEventListener("click", (e) => {
         if (e.target.closest("button")) return;
