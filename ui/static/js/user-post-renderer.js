@@ -39,12 +39,12 @@ class PostRenderer {
     const titleEl = postElement.querySelector(".post-title");
     titleEl.addEventListener("click", (e) => {
       e.stopPropagation();
-      window.location.href = `/post.html?id=${post.id}`;
+      window.location.href = `/post?id=${post.id}`;
     });
 
     postContainer.addEventListener("click", (e) => {
       if (e.target.closest("button")) return;
-      window.location.href = `/post.html?id=${post.id}`;
+      window.location.href = `/post?id=${post.id}`;
     });
 
     container.appendChild(postElement);
