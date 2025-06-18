@@ -190,3 +190,18 @@ func (r *PostRepository) GetPostsReactedByUser(userID string) ([]models.PostWith
 	}
 	return posts, nil
 }
+
+// GetPostByIDWithUser returns a single post with the author's username
+func (r *PostRepository) GetPostByIDWithUser(postID string) (*models.PostWithUser, error) {
+	row := r.db.QueryRow(`
+                SELECT p.post_id, p.user_id, u.username, p.title, p.content, p.created_at
+                FROM posts p
+                JOIN user u ON p.user_id = u.user_id
+                WHERE p.post_id = ?`, postID)
+
+	var p models.PostWithUser
+	if err := row.Scan(&p.ID, &p.UserID, &p.Username, &p.Title, &p.Content, &p.CreatedAt); err != nil {
+		return nil, err
+	}
+	return &p, nil
+}

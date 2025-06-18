@@ -161,7 +161,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
         }
 
-        commentsContainer.appendChild(commentElement);
+      commentsContainer.appendChild(commentElement);
+      });
+
+      postContainer.addEventListener("click", (e) => {
+        if (e.target.closest("button")) return;
+        window.location.href = `/post.html?id=${post.id}`;
       });
 
       forumContainer.appendChild(postElement);
@@ -268,7 +273,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
         }
 
-        commentsContainer.appendChild(commentElement);
+      commentsContainer.appendChild(commentElement);
+      });
+
+      postContainer.addEventListener("click", (e) => {
+        if (e.target.closest("button")) return;
+        window.location.href = `/post.html?id=${post.id}`;
       });
 
       postsContainer.appendChild(postElement);

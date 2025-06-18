@@ -78,6 +78,11 @@ class PostRenderer {
 
     this.commentHandler.addCommentInput(postContainer, post, refreshFn);
 
+    postContainer.addEventListener("click", (e) => {
+      if (e.target.closest("button")) return;
+      window.location.href = `/post.html?id=${post.id}`;
+    });
+
     container.appendChild(postElement);
   }
 }

@@ -27,6 +27,9 @@ func main() {
 	http.HandleFunc("/user", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./static/templates/user.html")
 	})
+	http.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/templates/post.html")
+	})
 	http.HandleFunc("/config", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		config := map[string]string{
@@ -42,6 +45,7 @@ func main() {
 			"CreatePostURI": CreatePostURI,
 			"MyPostsURI":    MyPostsURI,
 			"LikedPostsURI": LikedPostsURI,
+			"PostDetailURI": PostDetailURI,
 		}
 		json.NewEncoder(w).Encode(config)
 	})
